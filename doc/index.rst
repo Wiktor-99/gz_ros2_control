@@ -165,7 +165,23 @@ Additionally, one can specify a namespace and remapping rules, which will be for
     </plugin>
   </gazebo>
 
+<<<<<<< HEAD
 Default ign_ros2_control Behavior
+=======
+SDF:
+
+.. code-block:: xml
+
+  <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+    ...
+    <ros>
+      <namespace>my_namespace</namespace>
+      <remapping>/robot_description:=/robot_description_full</remapping>
+    </ros>
+  </plugin>
+
+Default gz_ros2_control Behavior
+>>>>>>> a7d5a40 (Add a namespaced example (#457))
 -----------------------------------------------------------
 
 By default, without a ``<plugin>`` tag, *ign_ros2_control* will attempt to get all of the information it needs to interface with a ros2_control-based controller out of the URDF. This is sufficient for most cases, and good for at least getting started.
@@ -228,7 +244,16 @@ The following is a basic configuration of the controllers:
 ign_ros2_control_demos
 ==========================================
 
+<<<<<<< HEAD
 There are some examples in the *ign_ros2_control_demos* package.
+=======
+There are some examples in the *gz_ros2_control_demos* package.
+To specify whether to use URDF or SDF, you can launch the demo in the following way (the default is URDF):
+
+.. code-block:: shell
+
+  ros2 launch gz_ros2_control_demos <launch file> description_format:=sdf
+>>>>>>> a7d5a40 (Add a namespaced example (#457))
 
 Cart on rail
 -----------------------------------------------------------
@@ -272,9 +297,34 @@ When the Gazebo world is launched you can run some of the following commands to 
 
 .. code-block:: shell
 
+<<<<<<< HEAD
   ros2 run ign_ros2_control_demos example_diff_drive
   ros2 run ign_ros2_control_demos example_tricycle_drive
   ros2 run ign_ros2_control_demos example_ackermann_drive
+=======
+  ros2 run gz_ros2_control_demos example_diff_drive
+  ros2 run gz_ros2_control_demos example_tricycle_drive
+  ros2 run gz_ros2_control_demos example_ackermann_drive
+
+To demonstrate the setup of a namespaced robot, run
+
+.. code-block:: shell
+
+  ros2 launch gz_ros2_control_demos diff_drive_example_namespaced.launch.py
+
+which will launch a diff drive robot within the namespace ``r1``.
+
+.. note::
+
+  The ros2_control settings for the controller_manager and the controller defined in ``diff_drive_controller.yaml`` use wildcards to match all namespaces.
+
+To run the Mecanum mobile robot run the following commands to drive it from the keyboard:
+
+.. code-block:: shell
+
+  ros2 launch gz_ros2_control_demos mecanum_drive_example.launch.py
+  ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
+>>>>>>> a7d5a40 (Add a namespaced example (#457))
 
 Gripper
 -----------------------------------------------------------

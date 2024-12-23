@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <robot name="diff_drive" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="namespace" default="" />
+
   <material name="orange">
     <color rgba="0.8 0.4 0.0 1.0"/>
   </material>
@@ -166,8 +169,17 @@
   </ros2_control>
 
   <gazebo>
+<<<<<<< HEAD:ign_ros2_control_demos/urdf/test_diff_drive.xacro.urdf
     <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
       <parameters>$(find ign_ros2_control_demos)/config/diff_drive_controller_velocity.yaml</parameters>
+=======
+    <!-- Joint state publisher -->
+    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <ros>
+        <namespace>$(arg namespace)</namespace>
+      </ros>
+      <parameters>$(find gz_ros2_control_demos)/config/diff_drive_controller.yaml</parameters>
+>>>>>>> a7d5a40 (Add a namespaced example (#457)):gz_ros2_control_demos/urdf/test_diff_drive.xacro.urdf
     </plugin>
   </gazebo>
 
